@@ -137,7 +137,7 @@ class ChatLLM(LLM):
                 print("gpu llm_device===" + llm_device)
                 num_gpus = torch.cuda.device_count()
                 if num_gpus < 2 and device_map is None:
-                    self.model =  AutoModel.from_pretrained("THUDM/chatglm2-6b", trust_remote_code=True).half().cuda()
+                    self.model =  AutoModel.from_pretrained("THUDM/chatglm-6b-int4", trust_remote_code=True).half().cuda()
                 else:
                     from accelerate import dispatch_model
                     model = AutoModel.from_pretrained("THUDM/chatglm2-6b")

@@ -36,10 +36,10 @@ embedding_model_dict = {
 
 llm_model_dict = {
     "chatglm": {
-        "ChatGLM-6B": "THUDM/chatglm-6b",
-        "ChatGLM-6B-int4": "THUDM/chatglm-6b-int4",
+        # "ChatGLM-6B": "THUDM/chatglm-6b",
+        # "ChatGLM-6B-int4": "THUDM/chatglm-6b-int4",
         "ChatGLM-6B-int8": "THUDM/chatglm-6b-int8",
-        "ChatGLM-6b-int4-qe": "THUDM/chatglm-6b-int4-qe"
+        # "ChatGLM-6b-int4-qe": "THUDM/chatglm-6b-int4-qe"
     },
     "belle": {
         "BELLE-LLaMA-Local": "/pretrainmodel/belle",

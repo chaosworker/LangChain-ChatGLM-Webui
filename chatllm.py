@@ -130,23 +130,17 @@ class ChatLLM(LLM):
                                                            trust_remote_code=True,
                                                            cache_dir=os.path.join(MODEL_CACHE_PATH,
                                                                                   self.model_name_or_path))
+
+            # from transformers import AutoModel
+            # model = AutoModel.from_pretrained("THUDM/chatglm2-6b")
             if torch.cuda.is_available() and llm_device.lower().startswith("cuda"):
                 print("gpu llm_device===" + llm_device)
-
                 num_gpus = torch.cuda.device_count()
                 if num_gpus < 2 and device_map is None:
-                    self.model = (AutoModel.from_pretrained(
-                        self.model_name_or_path, trust_remote_code=True,
-                        cache_dir=os.path.join(MODEL_CACHE_PATH, self.model_name_or_path),
-                        **kwargs).half().cuda())
+                    self.model = AutoModel.from_pretrained("THUDM/chatglm2-6b")
                 else:
                     from accelerate import dispatch_model
-
-                    model = AutoModel.from_pretrained(self.model_name_or_path,
-                                                      trust_remote_code=True,
-                                                      cache_dir=os.path.join(MODEL_CACHE_PATH, self.model_name_or_path),
-                                                      **kwargs).half()
-
+                    model = AutoModel.from_pretrained("THUDM/chatglm2-6b")
                     if device_map is None:
                         device_map = auto_configure_device_map(num_gpus)
                     print("device_map===" + json.dumps(device_map))
